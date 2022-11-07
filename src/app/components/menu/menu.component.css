@@ -1,0 +1,37 @@
+button {
+  background: none!important;
+  border: none;
+  padding: 5!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: rgb(151, 151, 151);
+  cursor: pointer;
+}
+
+button:hover {
+  background: none!important;
+  border: none;
+  padding: 5!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: black;
+  cursor: pointer;
+}
+
+/* .logout {
+  display: flex;
+  justify-content: flex-end;
+} */
+
+.logout.absolute {
+  position: absolute;
+  right: 150px;
+  width: 200px;
+  height: 120px;
+}
+
+nav {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}

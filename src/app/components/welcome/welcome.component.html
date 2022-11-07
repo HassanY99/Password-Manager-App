@@ -1,0 +1,29 @@
+
+<!--
+<br>
+<div>
+<h2>Welcome to Password Manager.</h2>
+</div>
+
+<div>An app designed to save all your passwords safely.</div> -->
+
+
+<br>
+<div class="text-center">
+  <h1>Welcome to Password Manager</h1>
+  <p class="lead">An app designed to save all your passwords securely</p>
+
+  <button *ngIf="!hardcodedAuth.isUserLoggedIn()" (click)='continue()' type="button" class="btn btn-lg btn-outline-primary">Continue <fa-icon [icon]="faLockOpen"></fa-icon></button>
+  <p *ngIf="hardcodedAuth.isUserLoggedIn()" class="text-muted">We are glad that you are here with us, <span class="text-primary" *ngIf="hardcodedAuth.isUserLoggedIn()">{{hardcodedAuth.getAuthenticatedUser()}}</span></p>
+  <br>
+  <br>
+  <br>
+
+
+<div class="col-md-8 col-lg-7 col-xl-6 mx-auto">
+  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+    class="img-fluid" alt="Phone image">
+</div>
+
+
+</div>

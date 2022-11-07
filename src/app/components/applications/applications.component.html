@@ -1,0 +1,87 @@
+<br>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+
+
+<section>
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div>
+          <div class="card-body p-4">
+
+            <h3 class="text-center my-3 ">Password Manager App</h3>
+            <div class="text-center">
+              <p *ngIf="hardcodedAuth.isUserLoggedIn()" class="text-muted">We will keep all your passwords safe here, <span class="text-primary" *ngIf="hardcodedAuth.isUserLoggedIn()">{{hardcodedAuth.getAuthenticatedUser()}}</span></p>
+            </div>
+
+            <div class="text-center">
+              <button (click)="addApp()" type="button" class="btn btn-primary btn-lg btn-block">Add Password</button>
+            </div>
+            <br>
+            <br>
+
+            <div *ngIf='message' class="alert" class="alert alert-danger" role="alert">
+              {{message}}
+            </div>
+
+            <table class="table mb-4">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">App</th>
+                  <th scope="col">Password</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let password of passwords">
+                  <td *ngIf="password.app == 'Facebook'"><i class="fa-brands fa-xl fa-facebook"></i></td>
+                  <td *ngIf="password.app == 'Amazon'"><i class="fa-brands fa-xl fa-amazon"></i></td>
+                  <td *ngIf="password.app == 'Apple' "><i class="fa-brands fa-xl fa-apple"></i></td>
+                  <td *ngIf="password.app == 'Snapchat'"><i class="fa-brands fa-xl fa-snapchat"></i></td>
+                  <td *ngIf="password.app == 'Tiktok'"><i class="fa-brands fa-xl fa-tiktok"></i></td>
+                  <td *ngIf="password.app == 'Instagram'"><i class="fa-brands fa-xl fa-instagram"></i></td>
+                  <td *ngIf="password.app == 'Linkedin'"><i class="fa-brands fa-xl fa-linkedin"></i></td>
+                  <td *ngIf="password.app == 'Gmail'"><i class="fa-brands fa-xl fa-google"></i></td>
+                  <td *ngIf="password.app.includes('bank')"><i class="fa-sharp fa-xl fa-solid fa-building-columns"></i></td>
+                  <td *ngIf="password.app.includes('Bank')"><i class="fa-sharp fa-xl fa-solid fa-building-columns"></i></td>
+                  <td *ngIf="password.app == 'Starbucks'"><i class="fa-solid fa-xl fa-cup-togo"></i></td>
+                  <td *ngIf="password.app == 'Github'"><i class="fa-brands fa-xl fa-github"></i></td>
+                  <td *ngIf="password.app == 'Youtube'"><i class="fa-brands fa-xl fa-youtube"></i></td>
+                  <td *ngIf="password.app == 'Netflix'"><i class="fa-solid fa-xl fa-tv"></i></td>
+                  <td *ngIf="password.app == 'Hbo'"><i class="fa-solid fa-xl fa-tv"></i></td>
+                  <td *ngIf="password.app == 'Hulu'"><i class="fa-solid fa-xl fa-tv"></i></td>
+                  <td *ngIf="password.app == 'Spotify'"><i class="fa-brands fa-xl fa-spotify"></i></td>
+                  <td *ngIf="password.app.includes('music')"><fa-icon [icon]="faMusic"></fa-icon></td>
+
+
+                  <td *ngIf="password.app !== 'Facebook' && password.app !== 'Amazon' && password.app !== 'Apple'
+                  && password.app !== 'Snapchat' && password.app !== 'Tiktok' && password.app !== 'Instagram'
+                  && password.app !== 'Linkedin' && password.app !== 'Gmail' && !password.app.includes('bank')
+                  && !password.app.includes('Bank') && password.app !== 'Starbucks' && password.app !== 'Github' && password.app !== 'Youtube'
+                  && password.app !== 'Netflix' && password.app !== 'Hbo' && password.app !== 'Hulu'
+                  && !password.app.includes('music') && password.app !== 'Spotify'"><fa-icon [icon]="faCheckCircle"></fa-icon></td>
+
+                  <td>{{password.app}}</td>
+                  <td>{{password.password}}</td>
+                  <td>
+                    <li class="list-inline-item">
+                      <a (click)="deleteById(password.id)" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" class="px-2 text-danger"><i class="pen-edit" class="bx bx-trash-alt font-size-18"></i></a>
+                  </li>
+                    <li class="list-inline-item">
+                      <a (click)="updateById(password.id)" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="bin-delete" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                  </li>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

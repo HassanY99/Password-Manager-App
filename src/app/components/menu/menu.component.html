@@ -1,0 +1,20 @@
+ <div>
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="">Password Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <button *ngIf="this.hardcodedAuthentiction.isUserLoggedIn()" class="nav-item nav-link" (click)="routeToHome()">Home</button>
+        <!-- <a *ngIf="this.hardcodedAuthentiction.isUserLoggedIn()" class="nav-item nav-link" routerLink="(['/apps', username])">Apps</a> -->
+         <button *ngIf="this.hardcodedAuthentiction.isUserLoggedIn()" (click)="getToAppsWithUsername()" class="nav-item nav-link">Apps</button>
+
+       </div>
+    </div>
+
+    <button *ngIf="this.hardcodedAuthentiction.isUserLoggedIn()" class="logout" class="nav-item nav-link"  (click)="routeToLogout()" >Logout</button>
+    <button *ngIf="!this.hardcodedAuthentiction.isUserLoggedIn()" class="nav-item nav-link" (click)="routeToLogin()">Login</button>
+  </nav>
+
+</div>
