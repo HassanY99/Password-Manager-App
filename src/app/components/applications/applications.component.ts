@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PasswordDataService } from 'src/app/services/data/password-data.service';
 import { HardcodedAuthenticationService } from 'src/app/services/hardcoded-authentication.service';
-import { faUnlock, faLock, faUnlockKeyhole, faMusic, faShield, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import {faMusic, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 export class Password {
   constructor(
@@ -69,9 +69,6 @@ export class ApplicationsComponent implements OnInit {
 
   showSign = false;
 
-  faLock = faLock;
-  faUnlock = faUnlock;
-  faUnlockKeyhole = faUnlockKeyhole;
   faMusic = faMusic;
   faCheckCircle = faCheckCircle;
 
