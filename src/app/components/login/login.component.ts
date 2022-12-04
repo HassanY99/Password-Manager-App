@@ -34,16 +34,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // handleLogin() {
-  //   // console.log(this.username);
-  //   if(this.hardcodedAuthenticate.authenticate(this.username, this.password)) {
-  //     this.invalidLogin = false;
-  //     this.router.navigate(['apps'])
-  //   } else {
-  //     this.invalidLogin = true;
-  //   }
-  // }
-
   handleLoginBackend() {
     this.invalidLogin = false;
     this.invalidPassword = false;
@@ -77,9 +67,4 @@ showPassword() {
   this.show_button = !this.show_button;
   this.show_eye = !this.show_eye;
 }
-
-
-
-
-
 }

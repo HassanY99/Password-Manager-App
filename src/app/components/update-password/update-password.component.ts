@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PasswordDataService } from 'src/app/services/data/password-data.service';
 import { Password } from '../applications/applications.component';
-import { faUnlock, faLock, faUnlockKeyhole, faLockOpen } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-update-password',

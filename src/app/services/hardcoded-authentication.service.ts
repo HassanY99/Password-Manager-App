@@ -13,22 +13,16 @@ export class BasicAuth {
 })
 export class HardcodedAuthenticationService {
 
+  ROOT_URL:string="http://passwordmanager-dev.us-east-2.elasticbeanstalk.com";
+
   token:any;
 
   constructor(private http: HttpClient) { }
 
-  // authenticate(username: string, password: string) {
-  //   if(username == "zaza" && password == 'password') {
-  //     sessionStorage.setItem('authenticatedUser', username);
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
 
   executBackendAuthentication(username: string, password: string) {
 
-    return this.http.post<any>(`http://localhost:8080/authenticate`, {
+    return this.http.post<any>(`${this.ROOT_URL}/authenticate`, {
       username,
       password
     }).pipe(

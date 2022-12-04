@@ -19,6 +19,8 @@ export class MenuComponent implements OnInit {
 
   mdbCollapse:any;
 
+  isShown = false;
+
   constructor(public hardcodedAuthentiction: HardcodedAuthenticationService,
     private route: ActivatedRoute,
     private router: Router,
@@ -27,18 +29,11 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     this.hardcodedAuthentiction.isUserLoggedIn();
 
-
   }
 
 
   getToAppsWithUsername() {
-    // this.username = this.route.snapshot.params['username'];
-
-    this.passwordAuth.getBasicAuth().subscribe(
-      data => {
-        this.router.navigate(['apps', this.hardcodedAuthentiction.getAuthenticatedUser()])
-      }
-    )
+    this.router.navigate(['apps', this.hardcodedAuthentiction.getAuthenticatedUser()])
   }
 
   routeToLogout() {
@@ -47,10 +42,11 @@ export class MenuComponent implements OnInit {
 
   routeToHome() {
     this.router.navigate(['']);
+
   }
 
-  routeToLogin() {
-    this.router.navigate(['login']);
+  routeToProfile() {
+    this.router.navigate(['profile',this.hardcodedAuthentiction.getAuthenticatedUser()]);
   }
 
 

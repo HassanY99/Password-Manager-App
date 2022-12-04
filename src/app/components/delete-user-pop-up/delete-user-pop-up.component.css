@@ -1,0 +1,8 @@
+.btnSave{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.remove {
+  padding: 5px;
+}

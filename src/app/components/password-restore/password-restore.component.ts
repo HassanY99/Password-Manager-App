@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs';
 import { PasswordDataService } from 'src/app/services/data/password-data.service';
 import { HardcodedAuthenticationService } from 'src/app/services/hardcoded-authentication.service';
-import { UserDao, UserDto, UserPassword, ValidationCode } from '../applications/applications.component';
-import {NgbModal, ModalDismissReasons, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import { UserDao, UserPassword } from '../applications/applications.component';
+import { NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 
@@ -42,7 +41,6 @@ export class PasswordRestoreComponent implements OnInit {
 
     this.userPassword = new UserPassword(this.id, '', '');
 
-    // this.email = this.route.snapshot.params['email'];
     this.validationCode = this.route.snapshot.params['validationCode'];
   }
 

@@ -54,6 +54,16 @@ export class ValidationCode {
     ) {}
 }
 
+export class UserProfile {
+  constructor(
+    public firstName: string,
+    public lastName: string,
+    public username: string,
+    public email: string,
+    public password: string
+  ) {}
+}
+
 @Component({
   selector: 'app-applications',
   templateUrl: './applications.component.html',
@@ -80,8 +90,6 @@ export class ApplicationsComponent implements OnInit {
   ngOnInit(): void {
     this.refreshApp();
 
-    // this.findAppByIDToDisplaySign();
-
     this.username = this.route.snapshot.params['username'];
   }
 
@@ -94,14 +102,6 @@ export class ApplicationsComponent implements OnInit {
 
     )
   }
-
-  // findAppByIDToDisplaySign() {
-  //   this.passwordData.findById(2).subscribe(
-  //     data => {
-  //       console.log(data.app);
-  //     }
-  //   )
-  // }
 
   deleteById(id: number) {
     this.passwordData.deleteAppById(id).subscribe(
@@ -122,7 +122,6 @@ export class ApplicationsComponent implements OnInit {
     this.router.navigate(['updateApp', id, this.username])
   }
 
-  // uniq =  (new Date()).getTime();
 
   addApp() {
     this.username = this.route.snapshot.params['username'];

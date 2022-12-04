@@ -1,9 +1,9 @@
 <body>
 <section class="vh-100">
   <br>
-  <div class="container h-100">
+  <div class="container">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-12 col-xl-11">
+      <div class="col-lg-12 col-xl-11 mb-4 mb-lg-0">
         <div class="card text-black" style="border-radius: 25px;">
           <div class="card-body p-md-5">
             <div class="row justify-content-center">
@@ -47,7 +47,7 @@
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <label class="form-label" for="form3Example4c">Username</label>
-                      <input [(ngModel)]="userDto.username" name="username" type="text" id="form3Example4c" class="form-control" minlength="5" #userName="ngModel" [class.is-invalid]="userName.invalid && userName.dirty"  required="required"/>
+                      <input [(ngModel)]="userDto.username" name="username" type="text" class="form-control" minlength="5" #userName="ngModel" [class.is-invalid]="userName.invalid && userName.dirty"  required="required"/>
                       <div *ngIf="userName.errors" >
                         <div *ngIf="!userName.errors?.['required']" class="error">
                           <strong> Please enter a valid username.</strong> Your username should be atleast 5 characters.
@@ -80,12 +80,16 @@
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="boxContainer">
                       <label class="form-label">Password</label>
-                      <input [(ngModel)]="userDto.password" name="password" type="password" class="form-control" #safePassword="ngModel"
-                      [class.is-invalid]="safePassword.invalid && safePassword.dirty" minlength="7"required="required" [type]="show_button ? 'text' : 'password'"><i *ngIf="safePassword.dirty" [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword()"></i>
+                      <input [(ngModel)]="userDto.password" name="password" type="password" class="form-control" #safePassword="ngModel" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{7,18}$" required
+                      [class.is-invalid]="safePassword.invalid && safePassword.dirty" minlength="7" maxlength="18" required="required" [type]="show_button ? 'text' : 'password'"><i *ngIf="safePassword.dirty" [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword()"></i>
                       <div *ngIf="safePassword.errors" >
                         <div *ngIf="!safePassword.errors?.['required']" class="error">
                           <strong>Please enter your password</strong><ul>
-                            <li>Your password should be atleast 7 characters.</li>
+                            <li>At least 1 Uppercase</li>
+                            <li>At least 1 Lowercase</li>
+                            <li>At least 1 Number</li>
+                            <li>At least 1 Symbol e.g. !@#$%^&*_=+-</li>
+                            <li>Min 7 characters and Max 18 characters</li>
                           </ul>
                         </div>
                        </div>

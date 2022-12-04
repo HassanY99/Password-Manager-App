@@ -1,0 +1,19 @@
+<h2 matDialogTitle>Confirm Deletion</h2>
+<mat-dialog-content>
+  <div>
+  <i style="font-size:52px" class="fa-solid fa-circle-exclamation"></i>
+  <br>
+  <p>Are you sure you would like to remove your account?</p>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+
+  <div class="btnSave">
+    <div class="remove">
+      <button mat-button matDialogClose="cancel" class="btn btn-outline-primary">Cancel</button>
+  </div>
+  <div class="remove">
+    <button mat-button (click)="Confirm()" class="btn btn-outline-danger">Confirm</button>
+</div>
+</div>
+</mat-dialog-actions>

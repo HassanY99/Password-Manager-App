@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HardcodedAuthenticationService } from 'src/app/services/hardcoded-authentication.service';
-import { faUnlock, faLock, faUnlockKeyhole, faLockOpen, faSpinner} from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,8 +14,6 @@ export class LogoutComponent implements OnInit {
   faSpinner:any;
 
   redirecting = '';
-
-  spinner: boolean;
 
   constructor(private hardcodedAuthentication: HardcodedAuthenticationService,
     private router: Router) { }

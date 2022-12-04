@@ -11,6 +11,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { PasswordRestoreComponent } from './components/password-restore/password-restore.component';
 import { OneTimePasswordComponent } from './components/one-time-password/one-time-password.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent, },
@@ -19,6 +21,8 @@ const routes: Routes = [
   {path: 'logout', component: LogoutComponent, canActivate: [RouteGuardService]},
   {path: 'updateApp/:id/:username', component: UpdatePasswordComponent, canActivate: [RouteGuardService]},
   {path: 'newApp/:username', component: NewAppComponent, canActivate: [RouteGuardService]},
+  {path: 'profile/:username', component: ProfileComponent, canActivate: [RouteGuardService]},
+  {path: 'profile/update/:username', component: UpdateProfileComponent, canActivate: [RouteGuardService]},
   {path: 'signup', component: SignupComponent},
   {path: 'resetPassword', component: ResetPasswordComponent},
   {path: 'passwordRestore/:validationCode', component: PasswordRestoreComponent},

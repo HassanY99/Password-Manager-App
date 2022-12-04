@@ -20,11 +20,6 @@ button:hover {
   cursor: pointer;
 }
 
-/* .logout {
-  display: flex;
-  justify-content: flex-end;
-} */
-
 .logout.absolute {
   position: absolute;
   right: 150px;

@@ -17,16 +17,9 @@
 
           <!-- Email input -->
           <div class="form-outline mb-4">
-            <input type="text" name='username' [(ngModel)]="username" class="form-control form-control-lg" />
+            <input type="text" name='username' [(ngModel)]="username" class="form-control" />
             <label class="form-label" for="form1Example13">Username</label>
           </div>
-
-          <!-- Password input -->
-          <!-- <div class="form-outline mb-4">
-            <input type="password" name='password' [(ngModel)]='password' id="form1Example23" class="form-control form-control-lg" />
-            <label class="form-label" for="form1Example23">Password</label>
-          </div> -->
-
 
             <div *ngIf='invalidPassword' class="error">
               <strong>{{passwordErrorMessage}}</strong>
@@ -43,14 +36,6 @@
           <a class="forgot" (click)="routeToReset()">Forgot password?</a>
 
           <br>
-
-          <!-- <div class="createNew">
-          <div class="d-flex align-items-center">
-            <p class="mb-0 me-2">Don't have an account?</p>
-            <button (click)="signUp()" type="button" class="btn btn-outline-primary">Create new</button>
-          </div>
-        </div> -->
-
 
         </form>
         <div class="d-flex align-items-center justify-content-center">

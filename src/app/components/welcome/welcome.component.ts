@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faUnlock, faLock, faUnlockKeyhole, faLockOpen } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
 import { HardcodedAuthenticationService } from 'src/app/services/hardcoded-authentication.service';
 
 @Component({
@@ -31,6 +31,4 @@ export class WelcomeComponent implements OnInit {
       this.faLockOpen = faLock;
     }, 5);
   }
-
-
 }

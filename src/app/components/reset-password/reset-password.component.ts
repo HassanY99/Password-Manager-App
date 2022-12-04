@@ -17,6 +17,10 @@ export class ResetPasswordComponent implements OnInit {
   invalidEmail = false;
   emailErrorMessage = "No user found with that email."
 
+  emailValid = false;
+  sendingEmail = "";
+
+
   constructor(private router: Router,
     private route: ActivatedRoute,
     private passwordAuth: PasswordDataService,
@@ -27,10 +31,16 @@ export class ResetPasswordComponent implements OnInit {
 
   redirectToReset() {
 
+    setTimeout(() => {
+      this.emailValid = true;
+      this.sendingEmail = "Sending email...";
+    }, 100);
     this.passwordAuth.findUserByEmail(this.email).subscribe({
-
       next: (data) => {
-        this.router.navigate(['opt', this.email]);
+
+        setTimeout(() => {
+          this.router.navigate(['opt', this.email]);
+        }, 2000);
       },
       error: (error) => {
         if(error.error.message == 'User with that email does not exist') {

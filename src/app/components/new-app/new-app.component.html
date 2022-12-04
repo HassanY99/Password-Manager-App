@@ -5,7 +5,7 @@
      <div class="container py-5 h-80">
        <div class="row d-flex justify-content-center align-items-center h-100">
          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-           <div class="card bg-dark text-white" style="border-radius: 1rem;">
+           <div class="card bg-secondary text-white" style="border-radius: 1rem;">
              <div class="card-body p-5 text-center">
 
                <div class="mb-md-5 mt-md-4 pb-5">
@@ -14,20 +14,27 @@
                  <p class="text-white-50 mb-5">Fill in the data below.</p>
 
 
-                 <div class="form-outline form-white mb-4">
-                   <div *ngIf='appName.dirty && appName.invalid' class="alert alert-warning" role="alert">
-                     <strong>Please enter your app name</strong>
-                   </div>
-                   <input [(ngModel)]="password.app" #appName="ngModel" type="text" name="name" placeholder="Ex. Facebook" minlength="3" class="form-control form-control-lg" required="required"/>
+                   <input [(ngModel)]="password.app" #appName="ngModel" type="text" name="name" placeholder="Ex. Facebook" minlength="2"  type="text" id="form3Example1c" class="form-control form-control-lg" minlength="2"
+                   [class.is-invalid]="appName.invalid && appName.dirty" required required="required"/>
+                   <div *ngIf="appName.errors" >
+                     <div *ngIf="!appName.errors?.['required']" class="error">
+                       <strong> Please enter your app name. </strong>
+                     </div>
+                    </div>
+                    <div>
                    <label class="form-label">App Name</label>
                  </div>
 
-                 <div *ngIf='passwordName.dirty && passwordName.invalid' class="alert alert-warning" role="alert">
-                   <strong>Please enter your password</strong> Your password should be atleast 7 characters.
-                 </div>
+
 
                  <div class="form-outline form-white mb-4">
-                   <input [(ngModel)]="password.password" #passwordName="ngModel" type="password" [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Ex. password123" minlength="7" required="required" class="form-control form-control-lg" />
+                   <input [(ngModel)]="password.password" #passwordName="ngModel" type="password" class="form-control form-control-lg" minlength="2" [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Ex. password123"
+                   [class.is-invalid]="passwordName.invalid && passwordName.dirty" required required="required" />
+                   <div *ngIf="passwordName.errors" >
+                    <div *ngIf="!passwordName.errors?.['required']" class="error">
+                      <strong> Please enter your password. </strong>
+                    </div>
+                   </div>
                    <label class="form-label">Password</label>
                  </div>
 

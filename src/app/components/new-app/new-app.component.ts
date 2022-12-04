@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PasswordDataService } from 'src/app/services/data/password-data.service';
 import { HardcodedAuthenticationService } from 'src/app/services/hardcoded-authentication.service';
 import { Password, UserDao } from '../applications/applications.component';
-import { faUnlock, faLock, faUnlockKeyhole, faLockOpen } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-new-app',

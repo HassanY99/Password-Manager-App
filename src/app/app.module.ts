@@ -25,6 +25,10 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopUpComponent } from './components/pop-up/pop-up.component';
 import { OneTimePasswordComponent } from './components/one-time-password/one-time-password.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { DeleteUserPopUpComponent } from './components/delete-user-pop-up/delete-user-pop-up.component';
+import { SuccessPopUpComponent } from './components/success-pop-up/success-pop-up.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +43,11 @@ import { OneTimePasswordComponent } from './components/one-time-password/one-tim
     ResetPasswordComponent,
     PasswordRestoreComponent,
     PopUpComponent,
-    OneTimePasswordComponent
+    OneTimePasswordComponent,
+    ProfileComponent,
+    UpdateProfileComponent,
+    DeleteUserPopUpComponent,
+    SuccessPopUpComponent
   ],
   imports: [
     BrowserModule,
