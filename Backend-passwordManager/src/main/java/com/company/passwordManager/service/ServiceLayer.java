@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.*;
 
 @Component
 public class ServiceLayer {
@@ -114,7 +114,7 @@ public class ServiceLayer {
     throw new IllegalArgumentException("Error");
   }
 
-  //    5. Find the app by specific id.
+  //   6. Find the app by specific id.
   public Password findTheAppById(int id) {
 
     Optional<Password> password = passwordRepository.findById(id);
@@ -127,6 +127,72 @@ public class ServiceLayer {
     } else {
       return null;
     }
+  }
+
+  //  7. To reset password, find user by email to verify and send them OPT.
+  public UserDao findEmailAndReturnUser(String email) throws Exception {
+
+    List<UserDao> foundUser = userRepository.findAll();
+
+    for (UserDao user : foundUser) {
+      if (email.equals(user.getEmail())) {
+
+        Properties properties = System.getProperties();
+        properties.put("mail.smtp.host", sendEmail.getHost());
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.starttls.enable","true");
+        properties.put("mail.smtp.auth", "true");
+
+
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator(){
+          protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(sendEmail.getSender(), sendEmail.getPassword());
+          }
+        });
+
+        try
+        {
+          // MimeMessage object.
+          MimeMessage message = new MimeMessage(session);
+
+          // Set From Field: adding senders email to from field.
+          message.setFrom(new InternetAddress(sendEmail.getSender()));
+
+          // Set To Field: adding recipient's email to from field.
+          message.addRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
+
+          // Set Subject: subject of the email
+          message.setSubject("Your Password Manager One-Time Access Code");
+
+          String messageText = "<h1>Password Manager<h1>";
+          messageText += "<h1>Hello <h1>" + "<h1>" + user.getFirstName().toUpperCase() + " " + user.getLastName().toUpperCase() + "</h1><br>";
+          messageText += "<p>Your One-Time Password:</p><br>";
+          messageText += "<h2>" + String.format("%16d",randomNumb) + "</h2><br>";
+          messageText += "<p>Use this code to complete the verification process in the app or website.</p><br>";
+          messageText += "<p>Do not share this code with anyone calling you directly. PasswordManager representatives will never reach out to you to verify this code over the phone or SMS.</p>";
+          messageText += "_____________________________________________";
+          messageText += "<h5>If you have any questions please email us at passwordmanagersecure@outlook.com</h5>";
+
+
+          // set body of the email.
+          message.setContent(messageText, "text/html");
+
+          // Send email.
+          Transport.send(message);
+          System.out.println("Mail successfully sent");
+
+          UserDao userDao = new UserDao();
+          userDao.setEmail(user.getEmail());
+
+          return userDao;
+        }
+        catch (MessagingException mex) {
+          mex.printStackTrace();
+        }
+      }
+    }
+    System.out.println("No Email Found!");
+    throw new IllegalArgumentException("User with that email does not exist");
   }
 
 }
