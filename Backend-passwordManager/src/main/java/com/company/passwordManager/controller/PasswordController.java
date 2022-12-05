@@ -39,4 +39,10 @@ public class PasswordController {
     serviceLayer.updateApp(password, passwordId, username);
   }
 
+  @PostMapping("/save/user/{username}")
+  @ResponseStatus(HttpStatus.OK)
+  public Password saveApp(@RequestBody Password pass, @PathVariable String username) {
+    return serviceLayer.saveApp(pass, username);
+  }
+
 }

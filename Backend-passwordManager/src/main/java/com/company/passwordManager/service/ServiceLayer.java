@@ -95,6 +95,23 @@ public class ServiceLayer {
     pass.setId(password.getId());
   }
 
+  //  5. Save App
+  public Password saveApp(@RequestBody Password pass, @PathVariable String username) {
+
+    UserDao userDao = userRepository.findByUsername(username);
+
+
+    if(username.equals(userDao.getUsername())) {
+
+      Password password = new Password();
+      password.setApp(StringUtils.capitalize(pass.getApp())); // Capitalize the first letter here
+      password.setPassword(PasswordSecurityAES.encrypt(pass.getPassword()));
+      password.setUserDao(userDao);
+
+      return passwordRepository.save(password);
+    }
+    throw new IllegalArgumentException("Error");
+  }
 
 
 }
