@@ -2,9 +2,11 @@
 
 ## Password Manager App
 
+<img width="1416" alt="Screenshot 2022-12-05 at 3 12 55 PM" src="https://user-images.githubusercontent.com/86437158/205733922-665b0539-a0d0-4b4e-8986-a37b876abf11.png">
+
   ## Description
 
-  This application lets users to save all their applications passwords in one place securely. We all carry so many apps on your phone and desktop with so many user credentials that we create and tend to forget so this app solves that problem by letting users to save their passwords in one place. I have placed secure practices in this app to securely register the user, encrypt user passwords and their apps passwords.
+  This application lets users to save all their applications passwords securely in one place. We all carry so many apps on your phone and desktop with so many user credentials that we create and tend to forget so this app solves that problem by letting users to save their passwords in one place. I have placed secure practices in this app to securely register the user, encrypt user passwords and their apps passwords.
   
   Application deployed on AWS: [Live App](http://ngpasswordmanager.s3-website.us-east-2.amazonaws.com/)
 
@@ -23,23 +25,25 @@
 
   ## User Story
 
-* As a user, I want to be able to create personal portfolio/profile that other users can see. I should be able to view other developers portfolio, create posts, take part in discussion and leave comments on other users posts.
+* As a user, I want to be able to be able to register and create my profile. After logging in, I should be able to add my applications name and password. I should also have the ability to update my apps name or passwords. I also want the ability to update any of my profile information either be my username, email or password.
 
 ## Features
 
-  * Create user portfolio/profile.
+  * Register and create user profile.
 
-  * Add education and experience in user profile.
+  * Add applications name and its password.
 
-  * View other developers profile.
+  * Update applications name and its password.
 
-  * View other developers post and discussion.
+  * Delete applications name and its password.
 
-  * Create new discussion and create posts.
+  * Update user profile info e.g. name, username, email and password.
+  
+  * Delete user account which will also remove all the saved passwords.
 
   * App uses JWT to log user into the application.
 
-  * BCrypt is used to save user passwords securely.
+  * AES256 Encryption is used to save user passwords and applications passwords securely.
 
   ## Installation
 
@@ -48,29 +52,34 @@
 1. Clone the repository and install dependencies:
 
   ```bash
-  git clone https://github.com/HassanY99/MERN-Connect.git
-  cd MERN-connect
-  npm install
+  git clone https://github.com/HassanY99/Password-Manager-App.git
+  cd Password-Manager-App
   ```
-
-2. Run the setup, which takes care of installing dependencies, building packages and ensuring your workspace is dev-ready.
-
-    By running npm run dev, you can run both client and server side concurrently to initiate the app.
+2. Run Backend-PasswordManager, which is a spring boot maven project.
 
   ```bash
-  npm run dev
+  Run passwordManager main
+  ```
+  
+3. Run the setup, which takes care of installing dependencies, building packages and ensuring your workspace is dev-ready.
+
+  ```bash
+  npm install on passwordManager-frontend angular app
+  ng serve
   ```
 
 That's it, you are good to go! Now you can successfully run the app in your local environment! 👾
 
  ## Technology Stack
 
-  - Reactjs
-  - Nodejs
-  - Expressjs
-  - MongoDb
-  - Tailwind
+  - Angularjs
+  - Spring Boot
+  - MySql
+  - Spring MVC
+  - Spring Security - JWT
+  - JDBC
   - Bootstrap
+  - REST API
   
   ## Tests
 
