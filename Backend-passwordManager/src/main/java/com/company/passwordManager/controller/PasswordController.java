@@ -1,6 +1,7 @@
 package com.company.passwordManager.controller;
 
 import com.company.passwordManager.model.Password;
+import com.company.passwordManager.model.UserDao;
 import com.company.passwordManager.service.ServiceLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,6 +50,12 @@ public class PasswordController {
   @ResponseStatus(HttpStatus.OK)
   public Password findById(@PathVariable int id) {
     return serviceLayer.findTheAppById(id);
+  }
+
+  @GetMapping("/findByEmail/{email}/safe")
+  @ResponseStatus(HttpStatus.OK)
+  public UserDao findByEmail(@PathVariable String email) throws Exception {
+    return serviceLayer.findEmailAndReturnUser(email);
   }
 
 }
