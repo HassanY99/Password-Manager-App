@@ -83,7 +83,7 @@ That's it, you are good to go! Now you can successfully run the app in your loca
   - Bootstrap
   - REST API
   
-  ## Tests
+  ## App Walkthrough
 
   - [Full Video](https://drive.google.com/file/d/1VUcnCwJBgmhgGhCLFrUEcOio1Hj0dna8/view)
   
