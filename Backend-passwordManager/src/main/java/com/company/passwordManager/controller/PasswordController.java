@@ -2,6 +2,7 @@ package com.company.passwordManager.controller;
 
 import com.company.passwordManager.model.Password;
 import com.company.passwordManager.model.UserDao;
+import com.company.passwordManager.model.UserPassword;
 import com.company.passwordManager.model.ValidationCode;
 import com.company.passwordManager.service.ServiceLayer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,12 @@ public class PasswordController {
   @ResponseStatus(HttpStatus.OK)
   public UserDao getUserWithCode(@RequestBody ValidationCode validationCode, @PathVariable String email) {
     return serviceLayer.getUserWithCode(validationCode, email);
+  }
+
+  @PutMapping("/user/{validationCode}/change")
+  @ResponseStatus(HttpStatus.CREATED)
+  public void updateUserPassword(@RequestBody UserPassword userPassword, @PathVariable int validationCode) {
+    serviceLayer.updatePassword(userPassword, validationCode);
   }
 
 }
