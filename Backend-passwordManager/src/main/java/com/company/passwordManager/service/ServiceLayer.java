@@ -4,6 +4,7 @@ import com.company.passwordManager.aes256.PasswordSecurityAES;
 import com.company.passwordManager.model.Password;
 import com.company.passwordManager.model.SendEmail;
 import com.company.passwordManager.model.UserDao;
+import com.company.passwordManager.model.ValidationCode;
 import com.company.passwordManager.repository.PasswordRepository;
 import com.company.passwordManager.repository.UserRepository;
 import org.apache.commons.lang3.StringUtils;
@@ -193,6 +194,68 @@ public class ServiceLayer {
     }
     System.out.println("No Email Found!");
     throw new IllegalArgumentException("User with that email does not exist");
+  }
+
+  //    7. Now verify the code and return user.
+  public UserDao getUserWithCode(@RequestBody ValidationCode validationCode, @PathVariable String email) {
+
+    List<UserDao> foundUser = userRepository.findAll();
+
+    Stack<Password> savedPasswords = new Stack<>();
+
+    UserDao returnUser = new UserDao();
+
+    if (validationCode.getValidationCode() == randomNumb) {
+
+      for (UserDao user : foundUser) {
+        if (email.equals(user.getEmail())) {
+
+          returnUser.setUsername(user.getUsername());
+          returnUser.setFirstName(user.getFirstName());
+          returnUser.setLastName(user.getLastName());
+          returnUser.setEmail(user.getEmail());
+          returnUser.setPassword(String.valueOf(randomNumb)); // Setting randomNum to validation code so that the same code/user can be used to update the password for same user.
+
+//          Creating a new Random Number so that the previous one can no longer be used;
+          Random random = new Random();
+          int secureRandom = random.nextInt(9999999);
+          randomNumb = secureRandom;
+        }
+
+
+//      Password algo here -> Get that specific user passwords. Update their password_id to the new user. Then delete old passwords that because of Foreign Key restraint.
+//                    Then you are able to delete the old user without `fk` errors and then save new users and save corresponding passwords which were updated(id).
+        List<Password> allPasswords = passwordRepository.findAll();
+
+        for (Password password : allPasswords) {
+          if (password.getUserDao().getId() == user.getId()) {
+
+            Password password1 = new Password();
+            password1.setApp(password.getApp());
+            password1.setPassword(password.getPassword());
+            password1.setUserDao(returnUser);
+
+            savedPasswords.push(password1);
+
+            passwordRepository.delete(password);
+          }
+
+        }
+
+        userRepository.delete(user);
+
+        userRepository.save(returnUser); //  Save the new user
+
+
+        while(!savedPasswords.isEmpty()) {
+
+          passwordRepository.save(savedPasswords.pop());
+        }
+        System.out.println("Returning User");
+        return returnUser;
+      }
+    }
+    throw new IllegalArgumentException("Invalid Code");
   }
 
 }
