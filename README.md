@@ -6,7 +6,7 @@
 
   ## Description
 
-  This application lets users to save all their applications passwords securely in one place. We all carry so many apps on your phone and desktop with so many user credentials that we create and tend to forget so this app solves that problem by letting users to save their passwords in one place. I have placed secure practices in this app to securely register the user, encrypt user passwords and their apps passwords.
+  This application lets users to save all their applications passwords securely in one place. We all carry so many apps on our phone and desktop with so many credentials that we create and tend to forget so this app solves that problem by letting users to save their passwords in one place. I have placed secure practices in this app to securely register the user, encrypt user passwords and their apps passwords.
   
   Application deployed on AWS: [Live App](http://ngpasswordmanager.s3-website.us-east-2.amazonaws.com/)
 
@@ -25,7 +25,7 @@
 
   ## User Story
 
-* As a user, I want to be able to be able to register and create my profile. After logging in, I should be able to add my applications name and password. I should also have the ability to update my apps name or passwords. I also want the ability to update any of my profile information either be my username, email or password.
+* As a user, I want to be able to register and create my profile. After logging in, I should be able to add my applications name and password. I should also have the ability to update and my apps name or passwords. I also want the ability to update any of my profile information either be my username, email or password.I should also have the ability to reset my password in case I forget and also be able to delete my account.
 
 ## Features
 
@@ -39,6 +39,8 @@
 
   * Update user profile info e.g. name, username, email and password.
   
+  * Reset user password.
+  
   * Delete user account which will also remove all the saved passwords.
 
   * App uses JWT to log user into the application.
@@ -49,7 +51,7 @@
 
   Follow these simple instructions to set up a local development environment.
 
-1. Clone the repository and install dependencies:
+1. Clone the repository:
 
   ```bash
   git clone https://github.com/HassanY99/Password-Manager-App.git
@@ -83,7 +85,7 @@ That's it, you are good to go! Now you can successfully run the app in your loca
   
   ## Tests
 
-  - [Full Video](https://drive.google.com/file/d/1Ys2LGScf0zBTgnlRZZwn5Dw164LzmTkQ/view)
+  - [Full Video](https://drive.google.com/file/d/1VUcnCwJBgmhgGhCLFrUEcOio1Hj0dna8/view)
   
 
   ## Contributing
