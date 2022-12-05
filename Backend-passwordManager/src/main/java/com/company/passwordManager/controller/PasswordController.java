@@ -1,9 +1,6 @@
 package com.company.passwordManager.controller;
 
-import com.company.passwordManager.model.Password;
-import com.company.passwordManager.model.UserDao;
-import com.company.passwordManager.model.UserPassword;
-import com.company.passwordManager.model.ValidationCode;
+import com.company.passwordManager.model.*;
 import com.company.passwordManager.service.ServiceLayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -70,6 +67,12 @@ public class PasswordController {
   @ResponseStatus(HttpStatus.CREATED)
   public void updateUserPassword(@RequestBody UserPassword userPassword, @PathVariable int validationCode) {
     serviceLayer.updatePassword(userPassword, validationCode);
+  }
+
+  @PutMapping("/getUsersProfile/{username}")
+  @ResponseStatus(HttpStatus.OK)
+  public void updateUserProfile(@RequestBody UserProfile userProfile, @PathVariable String username) {
+    serviceLayer.updateUserProfile(userProfile, username);
   }
 
 }

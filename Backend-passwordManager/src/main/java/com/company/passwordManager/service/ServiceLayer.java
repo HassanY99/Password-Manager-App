@@ -309,4 +309,80 @@ public class ServiceLayer {
     }
   }
 
+  //    9. Update User Profile -> Any user info to update.
+
+  public void updateUserProfile(@RequestBody UserProfile userProfile, @PathVariable String username) {
+
+    List<UserDao> allUsers = userRepository.findAll();
+    UserDao foundUser = userRepository.findByUsername(username);
+
+    Stack<Password> savedPasswords = new Stack<>();
+
+    UserDao user = new UserDao();
+
+    if (username.equals(foundUser.getUsername())) {
+
+      user.setFirstName(userProfile.getFirstName());
+      user.setLastName(userProfile.getLastName());
+      user.setEmail(userProfile.getEmail());
+      user.setUsername(userProfile.getUsername());
+      user.setPassword(PasswordSecurityAES.encrypt(userProfile.getPassword()));
+
+//            This is to check if the user input and same saved user, username and email are same then don't throw any error. Otherwise, throw an error.
+      for (UserDao ppl : allUsers) {
+        if (user.getUsername().equals(foundUser.getUsername()) && user.getEmail().equals(foundUser.getEmail())) {
+          System.out.println("Same credentials to User Signed in.");
+        } else if(user.getUsername().equals(foundUser.getUsername()) && user.getUsername().equals(ppl.getUsername())) {
+          System.out.println("Same Username to User Signed in.");
+        } else if(user.getEmail().equals(foundUser.getEmail()) && user.getEmail().equals(ppl.getEmail())) {
+          System.out.println("Same Email to User Signed in.");
+        } else if (user.getUsername().equals(ppl.getUsername()) && user.getEmail().equals(ppl.getEmail())) {
+          System.out.println("Both");
+          throw new IllegalArgumentException("Username and Email Already exists");
+        } else if (user.getUsername().equals(ppl.getUsername())) {
+          System.out.println("Username");
+          throw new IllegalArgumentException("Username Already exists");
+        } else if (user.getEmail().equals(ppl.getEmail())) {
+          System.out.println("Email");
+          throw new IllegalArgumentException("Email Already exists");
+        }
+      }
+    }
+
+//      Password algo here -> Get that specific user passwords. Update their password_id to the new user. Then delete old passwords that because of Foreign Key restraint.
+//                    Then you are able to delete the old user without `fk` errors and then save new users and save corresponding passwords which were updated(id).
+    List<Password> allPasswords = passwordRepository.findAll();
+
+    for(Password password: allPasswords) {
+      if(password.getUserDao().getId() == foundUser.getId()) {
+
+        Password password1 = new Password();
+        password1.setApp(password.getApp());
+        password1.setPassword(password.getPassword());
+        password1.setUserDao(user);
+
+        savedPasswords.push(password1);
+
+        passwordRepository.delete(password);
+      }
+
+    }
+
+    userRepository.delete(foundUser);
+
+    user = userRepository.save(user); //  Save the new user
+    user.setId(user.getId());
+
+
+    while(!savedPasswords.isEmpty()) {
+
+      passwordRepository.save(savedPasswords.pop());
+    }
+    if(savedPasswords.isEmpty()) {
+      return;
+    }
+
+    throw new IllegalArgumentException("Please fill out all the required fields.");
+  }
+
 }
