@@ -1,27 +1,86 @@
-# PasswordManager
+# Password Manager 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.4.
+## Password Manager App
 
-## Development server
+  ## Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+  This application lets users to save all their applications passwords in one place securely. We all carry so many apps on your phone and desktop with so many user credentials that we create and tend to forget so this app solves that problem by letting users to save their passwords in one place. I have placed secure practices in this app to securely register the user, encrypt user passwords and their apps passwords.
+  
+  Application deployed on AWS: [Live App](http://ngpasswordmanager.s3-website.us-east-2.amazonaws.com/)
 
-## Code scaffolding
+  ## Licensing
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  [![license](https://img.shields.io/badge/license-MIT-blue)](https://shields.io)
 
-## Build
+  ## Table of Contents
+  - [User Story](#user-story)
+  - [Features](#features)
+  - [Installation](#installation)
+  - [Technology Stack](#technology-stack)
+  - [Tests](#tests)
+  - [Contributing](#contributing)
+  - [Questions](#questions)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+  ## User Story
 
-## Running unit tests
+* As a user, I want to be able to create personal portfolio/profile that other users can see. I should be able to view other developers portfolio, create posts, take part in discussion and leave comments on other users posts.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Features
 
-## Running end-to-end tests
+  * Create user portfolio/profile.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+  * Add education and experience in user profile.
 
-## Further help
+  * View other developers profile.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  * View other developers post and discussion.
+
+  * Create new discussion and create posts.
+
+  * App uses JWT to log user into the application.
+
+  * BCrypt is used to save user passwords securely.
+
+  ## Installation
+
+  Follow these simple instructions to set up a local development environment.
+
+1. Clone the repository and install dependencies:
+
+  ```bash
+  git clone https://github.com/HassanY99/MERN-Connect.git
+  cd MERN-connect
+  npm install
+  ```
+
+2. Run the setup, which takes care of installing dependencies, building packages and ensuring your workspace is dev-ready.
+
+    By running npm run dev, you can run both client and server side concurrently to initiate the app.
+
+  ```bash
+  npm run dev
+  ```
+
+That's it, you are good to go! Now you can successfully run the app in your local environment! 👾
+
+ ## Technology Stack
+
+  - Reactjs
+  - Nodejs
+  - Expressjs
+  - MongoDb
+  - Tailwind
+  - Bootstrap
+  
+  ## Tests
+
+  - [Full Video](https://drive.google.com/file/d/1Ys2LGScf0zBTgnlRZZwn5Dw164LzmTkQ/view)
+  
+
+  ## Contributing
+
+  Please reach out to me at my email for any question, suggestion or collaboration.
+
+  ## Questions
+
+  You can check me on [HassanY99](https://github.com/HassanY99) and can shoot me an email at hassanyousuf1999@gmail.com.
