@@ -385,4 +385,24 @@ public class ServiceLayer {
     throw new IllegalArgumentException("Please fill out all the required fields.");
   }
 
+  // 11. Find user profile by their username
+  public UserProfile findUserByUsername(@PathVariable String username) {
+
+    UserDao foundUser = userRepository.findByUsername(username);
+
+    if(username.equals(foundUser.getUsername())) {
+
+      UserProfile returnUser = new UserProfile();
+      returnUser.setUsername(foundUser.getUsername());
+      returnUser.setFirstName(foundUser.getFirstName());
+      returnUser.setLastName(foundUser.getLastName());
+      returnUser.setEmail(foundUser.getEmail());
+      returnUser.setPassword(PasswordSecurityAES.decrypt(foundUser.getPassword()));
+
+      return returnUser;
+    }
+
+    throw new IllegalArgumentException("Username not found");
+  }
+
 }

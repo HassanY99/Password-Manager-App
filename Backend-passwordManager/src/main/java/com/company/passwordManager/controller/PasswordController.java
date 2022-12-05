@@ -75,4 +75,10 @@ public class PasswordController {
     serviceLayer.updateUserProfile(userProfile, username);
   }
 
+  @GetMapping("/findUser/{username}/secure")
+  @ResponseStatus(HttpStatus.OK)
+  public UserProfile findUserByUsername(@PathVariable String username) {
+    return serviceLayer.findUserByUsername(username);
+  }
+
 }
