@@ -45,4 +45,10 @@ public class PasswordController {
     return serviceLayer.saveApp(pass, username);
   }
 
+  @GetMapping("/findBy/{id}/safe")
+  @ResponseStatus(HttpStatus.OK)
+  public Password findById(@PathVariable int id) {
+    return serviceLayer.findTheAppById(id);
+  }
+
 }

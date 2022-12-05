@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Component
@@ -113,5 +114,19 @@ public class ServiceLayer {
     throw new IllegalArgumentException("Error");
   }
 
+  //    5. Find the app by specific id.
+  public Password findTheAppById(int id) {
+
+    Optional<Password> password = passwordRepository.findById(id);
+
+    if (password.isPresent()) {
+      Password foundPassword = new Password();
+      foundPassword.setApp(password.get().getApp());
+      foundPassword.setPassword(PasswordSecurityAES.decrypt(password.get().getPassword()));
+      return foundPassword;
+    } else {
+      return null;
+    }
+  }
 
 }
