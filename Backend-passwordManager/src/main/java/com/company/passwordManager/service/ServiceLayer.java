@@ -6,8 +6,11 @@ import com.company.passwordManager.model.SendEmail;
 import com.company.passwordManager.model.UserDao;
 import com.company.passwordManager.repository.PasswordRepository;
 import com.company.passwordManager.repository.UserRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +76,23 @@ public class ServiceLayer {
 
     userRepository.delete(foundUser);
 
+  }
+
+  //  4. UPDATE my app and password
+  public void updateApp(@RequestBody Password pass, @PathVariable int passwordId, @PathVariable String username) {
+
+    passwordRepository.deleteById(passwordId);
+
+
+    UserDao userDao = userRepository.findByUsername(username);
+    Password password = new Password();
+
+    password.setApp(StringUtils.capitalize(pass.getApp()));
+    password.setPassword(PasswordSecurityAES.encrypt(pass.getPassword()));
+    password.setUserDao(userDao);
+    pass = passwordRepository.save(password);
+
+    pass.setId(password.getId());
   }
 
 

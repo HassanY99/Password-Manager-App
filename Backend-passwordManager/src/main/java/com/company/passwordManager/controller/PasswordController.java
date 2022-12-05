@@ -32,4 +32,11 @@ public class PasswordController {
   public void deleteUserByUsername(@PathVariable String username) {
     serviceLayer.deleteUserByUsername(username);
   }
+
+  @PutMapping("/findById/{passwordId}/user/{username}")
+  @ResponseStatus(HttpStatus.CREATED)
+  public void updateById(@RequestBody Password password, @PathVariable int passwordId, @PathVariable String username) {
+    serviceLayer.updateApp(password, passwordId, username);
+  }
+
 }
