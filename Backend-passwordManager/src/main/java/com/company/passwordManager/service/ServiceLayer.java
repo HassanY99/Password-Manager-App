@@ -3,6 +3,7 @@ package com.company.passwordManager.service;
 import com.company.passwordManager.aes256.PasswordSecurityAES;
 import com.company.passwordManager.model.Password;
 import com.company.passwordManager.model.SendEmail;
+import com.company.passwordManager.model.UserDao;
 import com.company.passwordManager.repository.PasswordRepository;
 import com.company.passwordManager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,4 +50,31 @@ public class ServiceLayer {
     }
     return passwordList;
   }
+
+
+  //    2. DELETE my app and password
+
+  public void deleteById(int id) {
+    passwordRepository.deleteById(id);
+  }
+
+  //    3. DELETE User by Username and also delete its related passwords
+  public void deleteUserByUsername(String username) {
+
+    UserDao foundUser = userRepository.findByUsername(username);
+
+    List<Password> getAllPasswords = passwordRepository.findAll();
+
+    for(Password password: getAllPasswords) {
+      if(password.getUserDao().getId() == foundUser.getId()) {
+        passwordRepository.delete(password);
+      }
+    }
+
+    userRepository.delete(foundUser);
+
+  }
+
+
+
 }

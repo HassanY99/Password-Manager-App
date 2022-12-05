@@ -20,4 +20,16 @@ public class PasswordController {
   public List<Password> findAppByUsername(@PathVariable String username) {
     return serviceLayer.findByUsername(username);
   }
+
+  @DeleteMapping("/removeById/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void deleteById(@PathVariable int id) {
+    serviceLayer.deleteById(id);
+  }
+
+  @DeleteMapping("/removeUser/{username}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void deleteUserByUsername(@PathVariable String username) {
+    serviceLayer.deleteUserByUsername(username);
+  }
 }
