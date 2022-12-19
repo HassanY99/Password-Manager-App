@@ -79,7 +79,7 @@ That's it, you are good to go! Now you can successfully run the app in your loca
   - MySql
   - Spring MVC
   - Spring Security - JWT
-  - JDBC
+  - JPA
   - Bootstrap
   - REST API
   
